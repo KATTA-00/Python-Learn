@@ -1,47 +1,43 @@
-try:
-    import paho.mqtt.client as mqtt
-except:
-    import pip
-    pip.main(['install','paho-mqtt'])
+k_l = input()
 
+k,l = k_l.split(" ")
+k = int(k)
+l = int(l)
 
-# Imports
-import time
-import paho.mqtt.client as mqtt
+if (k<1):
+    k = 1
+elif (k>1000):
+    k = 1000
+if (l<0):
+    l = 0
+elif (l>1000000):
+    l = 1000000
+arr = list()
 
-topic_1 = "G8C/SERVER/DATA"
-topic_2 = "G8C/CCC/DATA"
-mqttBroker = "mqtt.eclipseprojects.io" #Must be connected to the vpn
-#mqttPort = 8000
-client = mqtt.Client("G8C") #Group 1A (Classified Document Room)
+for i in range(0,l):
+    m_n = input()
+    m,n = m_n.split(" ")
+    m = int(m)
+    n = int(n)
+    if (m < 1):
+        m = 1
+    elif (m > k):
+        k = k
+    if (n < 1):
+        n = 0
+    elif (l > k):
+        l = k
+    arr.append((m,n))
 
-# The callback for when the client receives a CONNACK response from the server.
-def on_connect(client, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
-    # Subscribing in on_connect() means that if we lose the connection and
-    # reconnect then subscriptions will be renewed.
-    client.subscribe(topic_1)
+arrNum = set()
 
-# The callback for when a PUBLISH message is received from the server.
-def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload.decode("utf-8")))
-    return str(msg.payload.decode("utf-8"))
+for i in arr():
+    arrNum.add(i[0])
+    arrNum.add(i[1])
 
+arrNum = list(arrNum)
 
+arrDic = dict()
 
-try:
-    client.connect(mqttBroker)
-    client.on_connect = on_connect
-    client.on_message = on_message
-    client.subscribe(topic_1)
-    client.loop_start()
-except:
-    print("Connection to MQTT broker failed!")
-    exit(1)
-
-while True:
-    print(on_message())
-    # update display
-    print(100)
 
 

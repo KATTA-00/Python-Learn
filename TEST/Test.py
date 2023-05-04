@@ -1,2 +1,27 @@
-# print(list_1)                                                                                                                                    file=open("data(For group C & D).csv",'a')      file.write("sum:{}\n".format(sum(list_1)))        file.write("max:{}\n".format(max(list_1)))        file.write("min:{}\n".format(min(list_1)))  file.write("average:{}".format((sum(list_1))/len(list_1)))                file.close()
-def display_student(name, age): print(name, age)                                                                                                                            show_student = display_student                                                          show_student("Saseena", 21)                                                                                                                                                                                                  file = open('data (For group C &D).csv', 'r')          list_1 = file.read().split(',') for i in range(len(list_1)):                                            list_1[i] = float(list_[i])
+from trig import factorial
+import math
+n = 20
+
+
+def e(x):
+    val = 0
+    for i in range(n):
+        val += x**(i) / factorial(i)
+    return val
+
+
+def sin(x):
+    return ((e(complex(0, x)) - e(-complex(0, x)))/(2j)).real
+
+
+def cos(x):
+    return ((e(complex(0, x)) + e(-complex(0, x)))/(2)).real
+
+
+def tan(x):
+    cos_x = cos(x)
+    sin_x = sin(x)
+
+    if cos_x == 0:
+        return "INF" if sin_x > 0 else "-INF"
+    return round(sin_x/cos_x, 5)
